@@ -1,25 +1,30 @@
-// READ: <https://stackoverflow.com/questions/156767/whats-the-difference-between-an-argument-and-a-parameter>
-
 #include "../exercise.h"
 
-void func(int);
+#include <iostream>
+#include <stdexcept>
 
-// TODO: 为下列 ASSERT 填写正确的值
+#define ASSERT(condition, message) \
+    if (!(condition)) { \
+        std::cerr << "Assertion failed: " << message << std::endl; \
+        std::exit(EXIT_FAILURE); \
+    }
+
+void func(int param);
+
 int main(int argc, char **argv) {
     auto arg = 99;
-    ASSERT(arg == ?, "arg should be ?");
-    std::cout << "befor func call: " << arg << std::endl;
+    ASSERT(arg == 99, "arg should be 99"); // 填写第一个 ASSERT
+    std::cout << "before func call: " << arg << std::endl;
     func(arg);
-    ASSERT(arg == ?, "arg should be ?");
+    ASSERT(arg == 99, "arg should be 99"); // 填写第二个 ASSERT
     std::cout << "after func call: " << arg << std::endl;
     return 0;
 }
 
-// TODO: 为下列 ASSERT 填写正确的值
 void func(int param) {
-    ASSERT(param == ?, "param should be ?");
-    std::cout << "befor add: " << param << std::endl;
+    ASSERT(param == 99, "param should be 99"); // 填写第一个 ASSERT
+    std::cout << "before add: " << param << std::endl;
     param += 1;
-    ASSERT(param == ?, "param should be ?");
+    ASSERT(param == 100, "param should be 100"); // 填写第二个 ASSERT
     std::cout << "after add: " << param << std::endl;
 }
