@@ -1,6 +1,6 @@
 #include "../exercise.h"
 #include <cassert>
-#include <cmath> // 引入cmath库，用于处理浮点数比较
+#include <cmath>
 
 // 函数模板化
 template<typename T>
