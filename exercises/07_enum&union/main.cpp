@@ -1,11 +1,11 @@
 #include "../exercise.h"
-
-// READ: 枚举类型 <https://zh.cppreference.com/w/cpp/language/enum>
-
-// `enum` 是 C 的兼容类型，本质上其对应类型的常量。
-// 在 `enum` 中定义标识符等价于定义 constexpr 常量，
-// 这些标识符不需要前缀，可以直接引用。
-// 因此 `enum` 定义会污染命名空间。
+#include <iostream>
+#include <cassert>
+#define ASSERT(condition, message) \
+    if (!(condition)) { \
+        std::cerr << "Assertion failed: " << message << std::endl; \
+        std::exit(EXIT_FAILURE); \
+    }
 enum ColorEnum : unsigned char {
     COLOR_RED = 31,
     COLOR_GREEN,
