@@ -4,13 +4,27 @@ struct Fibonacci {
     unsigned long long cache[128];
     int cached;
 
-    // TODO: 实现正确的缓存优化斐波那契计算
-    unsigned long long get(int i) {
-        for (; false; ++cached) {
-            cache[cached] = cache[cached - 1] + cache[cached - 2];
+     Fibonacci() : cached(0) {
+        for (int i = 0; i < 128; ++i) {
+            cache[i] = 0; // 初始化缓存数组
         }
+    }
+
+    unsigned long long Fibonacci::get(int i) {
+    if (i <= cached) {
         return cache[i];
     }
+
+    for (int n = cached; n <= i; ++n) {
+        if (n < 2) {
+            cache[n] = n; 
+        } else {
+            cache[n] = cache[n - 1] + cache[n - 2];
+        }
+    }
+    cached = i; 
+    return cache[i];
+}
 };
 
 int main(int argc, char **argv) {
