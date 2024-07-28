@@ -1,11 +1,11 @@
 #include "../exercise.h"
-#include <iostream>
-#include <cassert>
-#define ASSERT(condition, message) \
-    if (!(condition)) { \
-        std::cerr << "Assertion failed: " << message << std::endl; \
-        std::exit(EXIT_FAILURE); \
-    }
+
+// READ: 枚举类型 <https://zh.cppreference.com/w/cpp/language/enum>
+
+// `enum` 是 C 的兼容类型，本质上其对应类型的常量。
+// 在 `enum` 中定义标识符等价于定义 constexpr 常量，
+// 这些标识符不需要前缀，可以直接引用。
+// 因此 `enum` 定义会污染命名空间。
 enum ColorEnum : unsigned char {
     COLOR_RED = 31,
     COLOR_GREEN,
@@ -24,19 +24,22 @@ enum class Color : int {
 };
 
 ColorEnum convert_by_pun(Color c) {
+    // READ: <https://zh.cppreference.com/w/cpp/language/union>
     // `union` 表示在同一内存位置存储的不同类型的值。
     // 其常见用法是实现类型双关转换，即将一种类型的值转换为另一种无关类型的值。
-    // READ: <https://zh.cppreference.com/w/cpp/language/union>
+    // 但这种写法实际上仅在 C 语言良定义，在 C++ 中是未定义行为。
+    // 这是比较少见的 C++ 不与 C 保持兼容的特性。
+    // READ: 类型双关 <https://tttapa.github.io/Pages/Programming/Cpp/Practices/type-punning.html>
     union TypePun {
         ColorEnum e;
         Color c;
     };
 
     TypePun pun;
-    pun.c = c; 
-    return pun.e; 
+    // TODO: 补全类型双关转换
+    pun.c = c;
+    return pun.e;
 }
-
 
 int main(int argc, char **argv) {
     ASSERT(convert_by_pun(Color::Red) == COLOR_RED, "Type punning conversion");
