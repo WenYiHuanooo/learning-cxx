@@ -2,7 +2,6 @@
 #include <cstring>
 #include <iostream>
 
-// 假设 ASSERT 宏定义如下，如果 exercise.h 中已经有定义，请使用那个定义
 #ifndef ASSERT
 #define ASSERT(condition, message) \
     if (!(condition)) { std::cerr << "Assertion failed: " << message << "\n"; std::exit(1); }
