@@ -1,30 +1,26 @@
 #include "../exercise.h"
 
-#include <iostream>
-#include <stdexcept>
+// READ: <https://stackoverflow.com/questions/156767/whats-the-difference-between-an-argument-and-a-parameter>
+// THINK: 参数都有哪些传递方式？如何选择传递方式？
 
-#define ASSERT(condition, message) \
-    if (!(condition)) { \
-        std::cerr << "Assertion failed: " << message << std::endl; \
-        std::exit(EXIT_FAILURE); \
-    }
+void func(int);
 
-void func(int param);
-
+// TODO: 为下列 ASSERT 填写正确的值
 int main(int argc, char **argv) {
     auto arg = 99;
-    ASSERT(arg == 99, "arg should be 99"); // 填写第一个 ASSERT
-    std::cout << "before func call: " << arg << std::endl;
+    ASSERT(arg == 99, "arg should be ?");
+    std::cout << "befor func call: " << arg << std::endl;
     func(arg);
-    ASSERT(arg == 99, "arg should be 99"); // 填写第二个 ASSERT
+    ASSERT(arg == 99, "arg should be ?");
     std::cout << "after func call: " << arg << std::endl;
     return 0;
 }
 
+// TODO: 为下列 ASSERT 填写正确的值
 void func(int param) {
-    ASSERT(param == 99, "param should be 99"); // 填写第一个 ASSERT
-    std::cout << "before add: " << param << std::endl;
+    ASSERT(param == 99, "param should be ?");
+    std::cout << "befor add: " << param << std::endl;
     param += 1;
-    ASSERT(param == 100, "param should be 100"); // 填写第二个 ASSERT
+    ASSERT(param == 100, "param should be ?");
     std::cout << "after add: " << param << std::endl;
 }
