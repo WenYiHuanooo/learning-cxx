@@ -18,7 +18,6 @@ struct A {
         return 'A';
     }
 };
-
 int A::num_a = 0;
 
 struct B final : public A {
@@ -36,7 +35,6 @@ struct B final : public A {
         return 'B';
     }
 };
-
 int B::num_b = 0;
 
 int main(int argc, char **argv) {
@@ -58,6 +56,7 @@ int main(int argc, char **argv) {
     ASSERT(ab->name() == 'B', "Fill in the correct value for ab->name()");
 
     // TODO: 基类指针无法随意转换为派生类指针，补全正确的转换语句
+    // B &bb = *(B*)ab;
     B &bb = dynamic_cast<B&>(*ab);
     ASSERT(bb.name() == 'B', "Fill in the correct value for bb->name()");
 
